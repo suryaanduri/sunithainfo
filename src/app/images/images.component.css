@@ -1,0 +1,31 @@
+.example-card {
+    max-width: 600px;
+    
+    margin:auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .example-header-image {
+    
+    background-size: cover;
+  }
+
+ .navbar{
+  background-image: linear-gradient(to right, blue,rgb(32, 146, 184),rgb(247, 162, 6),rgb(32, 146, 184),blue);
+ }
+ h6{
+   color: white;
+ }
+ .navbar-brand{
+   color: white;
+ }
+
+ .btn{
+   color: white;
+ }
+
+ 
+
+
+ 

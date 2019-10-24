@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" style="color: white;" >Sunitha Infovision</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link"href="#" (click)="onSearch($event, 'nature')">Nature</a>
+            </li>
+          </ul>
+          <h6 >Please search for Images</h6>
+               &nbsp;&nbsp;&nbsp;&nbsp;
+          
+              <form [formGroup]="navbarForm"  class="form-inline mt-2 mt-md-0">
+                    <input formControlName="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" (keydown)="onSearch($event, searchRequest.value)"#searchRequest>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="onSearch($event, searchRequest.value)">Search</button>
+                  
+                  </form>
+
+        </div>
+      </nav>
+<mat-card  class="example-card" *ngFor= "let img of images" style="background-color: rgb(194, 157, 90);">
+    <mat-card-header>
+      
+      <div mat-card-avatar [ngStyle]="{'background': 'url(' + img.user.profile_image.large + ') no-repeat 0 0', 'background-size': '100%'}"  class="example-header-image"></div>
+      <mat-card-title>{{img.description}}</mat-card-title>
+      <mat-card-subtitle>{{img.alt_description}}</mat-card-subtitle>
+    </mat-card-header>
+    
+        <img mat-card-image src={{img.urls.small}} >
+    
+    
+    <mat-card-actions>
+        <div class="modal-footer">
+            <span *ngIf="!like"><i title="like" style="color:white;padding: 10px;" class="fa fa-thumbs-up" (click)="liked()"></i>{{img.likes}}</span>
+            <span *ngIf="like"><i title="dislike" style="color: red;padding: 10px;" class="fa fa-thumbs-up" (click)="liked()"></i>{{img.likes}}</span>
+            <label for="comment" style="font-weight: bold">Comments: </label>
+            
+            <input type="text" [(ngModel)]="commentsText" class="form-control" id="comment"> <span><button (click)="addComments(commentsText,img)" type="button" class="btn btn-primary">Add</button></span>
+            
+          </div>
+    
+    </mat-card-actions>
+    <mat-card-footer>
+      <div *ngFor="let item of img.current_user_collections ">
+      <span>{{item.comments}}</span>
+      <span style="margin-left: 60%;">{{item.date | date: 'dd/MM/yyyy hh:mm:ss'}}</span>
+    </div>
+        
+
+         
+    </mat-card-footer>
+  </mat-card>
+
+  
+
